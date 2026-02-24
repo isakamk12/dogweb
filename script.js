@@ -3,6 +3,56 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearElement = document.getElementById("y");
   if (yearElement) yearElement.textContent = new Date().getFullYear();
 
+  // Terminal Logic
+  const terminal = document.getElementById('pup-terminal');
+  const termInput = document.getElementById('terminal-input');
+  const termOutput = document.getElementById('terminal-output');
+
+  window.toggleTerminal = () => {
+    if (!terminal) return;
+    const isVisible = terminal.style.display === 'block';
+    terminal.style.display = isVisible ? 'none' : 'block';
+    if (!isVisible) termInput.focus();
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '`') {
+      e.preventDefault();
+      toggleTerminal();
+    }
+  });
+
+  if (termInput) {
+    termInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = termInput.value.trim().toLowerCase();
+        processCommand(cmd);
+        termInput.value = '';
+      }
+    });
+  }
+
+  function processCommand(cmd) {
+    const line = document.createElement('div');
+    line.className = 'line';
+
+    if (cmd === 'help') {
+      line.innerHTML = '> 使えるよ: help, status, scan, clear';
+    } else if (cmd === 'status') {
+      line.innerHTML = '> 健康状態: 100% | 可愛さ: 制限突破';
+    } else if (cmd === 'scan') {
+      line.innerHTML = '> スキャン中... 16個のふわふわなデータが見つかりました。';
+    } else if (cmd === 'clear') {
+      termOutput.innerHTML = '';
+      return;
+    } else {
+      line.innerHTML = `> おっと、わからないな: ${cmd}`;
+    }
+
+    termOutput.appendChild(line);
+    termOutput.scrollTop = termOutput.scrollHeight;
+  }
+
   // Intersection Observer for scroll animations
   const observerOptions = {
     threshold: 0.1,
@@ -48,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
       modalImg.src = src;
       modalImg.alt = "拡大画像";
 
-      // Wait for image load to show modal for smoother experience
       modal.showModal();
 
       // Animation for opening
@@ -61,6 +110,29 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // Mouse Trail Effect
+  document.addEventListener('mousemove', (e) => {
+    if (Math.random() > 0.85) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = `${e.clientX}px`;
+      sparkle.style.top = `${e.clientY}px`;
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 800);
+    }
+  });
+
+  // Scanner Logic
+  const hudLabels = ['CUTE_RADAR: SCANNING...', 'FLUFF_LEVEL: 100%', 'PUP_ID: POPO_01', 'STATUS: HEART_STOLEN'];
+  const hudElement = document.querySelector('.hud-data');
+  if (hudElement) {
+    let i = 0;
+    setInterval(() => {
+      hudElement.textContent = hudLabels[i];
+      i = (i + 1) % hudLabels.length;
+    }, 2000);
+  }
 
   // Smooth scroll for nav links
   document.querySelectorAll('nav.mini a').forEach(anchor => {

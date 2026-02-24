@@ -1,0 +1,103 @@
+:root {
+    --theme-accent: #00ff41;
+    /* Matrix green */
+    --theme-bg: #0a0a0a;
+    --theme-card: rgba(20, 20, 20, 0.9);
+    --theme-text: #00ff41;
+    --theme-muted: #008f11;
+    --theme-line: #004400;
+}
+
+.theme-cyber {
+    background-color: var(--theme-bg);
+    background-image:
+        linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--theme-text);
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+.theme-cyber .card {
+    background: var(--theme-card);
+    border: 1px solid var(--theme-accent);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    border-radius: 0;
+    /* Cyber style is sharper */
+}
+
+.theme-cyber .badge {
+    background: var(--theme-accent);
+    color: #000;
+    border-radius: 0;
+}
+
+.theme-cyber .btn {
+    border-radius: 0;
+    background: transparent;
+    border: 1px solid var(--theme-accent);
+    color: var(--theme-accent);
+}
+
+.theme-cyber .btn.primary {
+    background: var(--theme-accent);
+    color: #000;
+}
+
+/* Terminal Styles */
+.terminal-overlay {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    height: 300px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid var(--theme-accent);
+    z-index: 1000;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+}
+
+.terminal-header {
+    background: var(--theme-accent);
+    color: black;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.terminal-body {
+    padding: 10px;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+.terminal-input-row {
+    display: flex;
+    padding: 5px 10px;
+    border-top: 1px solid var(--theme-line);
+}
+
+.terminal-input-row input {
+    background: transparent;
+    border: none;
+    color: var(--theme-accent);
+    outline: none;
+    flex: 1;
+    margin-left: 5px;
+}
+
+.status-ok {
+    color: #00ff41;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}

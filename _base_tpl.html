@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="ぽぽちゃんの紹介ページ。" />
+    <title>ぽぽちゃんのページ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="themes/{{THEME}}.css" id="theme-link">
+</head>
+
+<body class="theme-{{THEME}}">
+    <main class="wrap">
+        {{CONTENT}}
+        <footer>
+            © <span id="y"></span> ぽぽちゃんのページ / {{FOOTER_NOTE}}
+        </footer>
+    </main>
+
+    <!-- Terminal HUD Overlay -->
+    <div id="pup-terminal" class="terminal-overlay">
+        <div class="terminal-content">
+            <div class="terminal-header">
+                <span class="terminal-title">✨ My Magical Pup Diary ✨</span>
+                <button class="terminal-close" onclick="toggleTerminal()">[X]</button>
+            </div>
+            <div class="terminal-body" id="terminal-output">
+                <div class="line">> 魔法の日記帳を開いたよ...</div>
+                <div class="line">> ぽぽちゃんステータス: <span class="status-ok">バッチリ！</span></div>
+                <div class="line">> \ キーで閉じられるよ。</div>
+            </div>
+            <div class="terminal-input-row">
+                <span class="prompt">$</span>
+                <input type="text" id="terminal-input" autofocus autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
